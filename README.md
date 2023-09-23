@@ -1,4 +1,4 @@
-my Netlify website https://wdd330fall2023.netlify.app/ 
+my Netlify website https://wdd330fall2023-sleepoutside.netlify.app/
 
 # sleepoutside
 
