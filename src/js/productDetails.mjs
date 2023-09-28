@@ -13,13 +13,18 @@ function renderProductDetails(productData) {
     .addEventListener("click", addToCartHandler);
 
   console.log(productData);
-  document.getElementById("productName").textContent =
-    productData.NameWithoutBrand;
+  
+  document.getElementById("brandName").textContent = productData.Brand.Name;
+  document.getElementById("productName").textContent = productData.NameWithoutBrand;
 
   // Image
   const img = document.getElementById("productImg");
   img.setAttribute("src", productData.Image);
   img.setAttribute("alt", productData.Name);
+
+  document.getElementById("productPrice").textContent = productData.FinalPrice;
+  document.getElementById("productColor").textContent = productData.Colors[0].ColorName;
+  document.getElementById("productDescription").textContent = productData.DescriptionHtmlSimple;
 }
 
 function addProductToCart(product) {
