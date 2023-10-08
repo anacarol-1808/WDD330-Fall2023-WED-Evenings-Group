@@ -147,6 +147,37 @@ button {
   margin: 0.5em 0;
 }
 
+.product-card__price {
+  display: flex;
+  align-items: center;
+}
+
+.product-card__final-price {
+  color: #525b0f;
+  font-size: 24px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.product-card__savings-percent {
+  color: #FFFFFF;
+  background-color: #525b0f;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  font-weight: 600;
+  height: fit-content;
+  padding: 5px 8px;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.product-card__suggested-retail-price {
+  color: gray;
+  text-decoration: line-through;
+  font-size: 16px;
+}
+
 .card__brand {
   font-size: var(--small-font);
 }
