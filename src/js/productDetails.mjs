@@ -25,6 +25,18 @@ function renderProductDetails(productData) {
   document.getElementById("productPrice").textContent = productData.FinalPrice;
   document.getElementById("productColor").textContent = productData.Colors[0].ColorName;
   document.getElementById("productDescription").textContent = productData.DescriptionHtmlSimple;
+
+  // Calculate and display the discount amount
+  
+  const finalPrice = productData.FinalPrice;
+  const listPrice = productData.ListPrice;
+  const discountAmount = listPrice - finalPrice;
+
+  if (discountAmount > 0) {
+    const discountElement = document.createElement("div");
+    discountElement.textContent = `Discount: $${discountAmount.toFixed(2)}`;
+    document.getElementById("productPrice").appendChild(discountElement);
+  }
 }
 
 function addProductToCart(product) {
@@ -43,3 +55,5 @@ async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
 }
+
+
