@@ -16,6 +16,10 @@
 * {
   box-sizing: border-box;
 }
+.hide {
+  display: none;
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -108,6 +112,27 @@ button {
 }
 .cart:hover svg {
   fill: gray;
+}
+
+.cart-wrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(155, 231, 155);
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  text-align: center;
+  font-size: 60%;
+  font-weight: 300;
+  margin-top: 18%;
+  margin-right: 15%;
 }
 
 /* End cart icon styles */
