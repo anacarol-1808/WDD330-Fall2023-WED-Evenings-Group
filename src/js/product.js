@@ -7,5 +7,3 @@ productDetails(productId);
 // Testing getParams and findProductById
 // console.log(getParam("product"))
 // console.log(findProductById(getParam("product")))
-
-
