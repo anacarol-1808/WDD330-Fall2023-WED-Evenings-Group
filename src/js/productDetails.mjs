@@ -22,7 +22,9 @@ function renderProductDetails(productData) {
   img.setAttribute("src", productData.Image);
   img.setAttribute("alt", productData.Name);
 
-  document.getElementById("productPrice").textContent = productData.FinalPrice;
+  document.getElementById("finalPrice").textContent = "$" + productData.FinalPrice;
+  document.getElementById("savingsPercent").textContent = "SAVE " + Math.floor(((productData.SuggestedRetailPrice - productData.FinalPrice) / productData.SuggestedRetailPrice) * 10000) / 100 + "%";
+  document.getElementById("suggestedRetailPrice").textContent = "$" + productData.SuggestedRetailPrice;
   document.getElementById("productColor").textContent = productData.Colors[0].ColorName;
   document.getElementById("productDescription").textContent = productData.DescriptionHtmlSimple;
 
