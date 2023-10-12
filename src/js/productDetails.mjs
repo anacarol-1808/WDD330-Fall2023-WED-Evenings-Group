@@ -39,6 +39,9 @@ function renderProductDetails(productData) {
     discountElement.textContent = `Discount: $${discountAmount.toFixed(2)}`;
     document.getElementById("productPrice").appendChild(discountElement);
   }
+
+  // Add to Cart Button
+  document.getElementById("addToCart").dataset.id = productData.Id
 }
 
 function addProductToCart(product) {
