@@ -2,14 +2,17 @@ import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  showTotal(cartItems);
+
+  // Only render if we have items in the cart
+  if (cartItems) {
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+    showTotal(cartItems);
+  }
+  // Could add else here to add some basic HTML encouraging them to go shop
 }
 
 function showTotal(cartItems) {
-  // If there is something in the cart
-  if (cartItems) {
     // Calculate total items
     const total = cartItems.reduce(
       (result, cartItem) => result + cartItem.ListPrice,
@@ -19,7 +22,6 @@ function showTotal(cartItems) {
     document.getElementById("cart-total").innerHTML += ` <b>${total}</b>`;
     // Select cart footer and unhide it
     document.getElementById("cart-footer").classList.remove("hide");
-  }
 }
 
 function cartItemTemplate(item) {
