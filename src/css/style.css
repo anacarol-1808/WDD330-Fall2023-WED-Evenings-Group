@@ -95,6 +95,18 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+
+#addToCart:hover {
+  color: var(--secondary-color);
+  background-color: var(--light-grey);
+}
+
+#addToCart:active {
+  background-color: #bcbaba;
+  box-shadow: 0 5px #676666;
+  transform: translateY(4px);
+}
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -120,11 +132,12 @@ button {
   height: 50px;
 }
 
-.cart-badge {
+#cart-badge {
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
-  background-color: rgb(155, 231, 155);
+  background-color: rgba(42, 207, 42, 0.488);
   border-radius: 50%;
   width: 12px;
   height: 12px;

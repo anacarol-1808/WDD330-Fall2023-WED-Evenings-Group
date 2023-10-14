@@ -3,13 +3,23 @@ const category = "tents";
 const selector = "productList";
 productList(category, selector);
 
-// counting items added to the cart
-let cartCount = 0;
 
-//const addToCartBtn = document.getElementById('addToCart');
-const cartBadge = document.getElementById("cart-count");
+// showing items added to the cart on the bag when the page loads
+let cartCount;
+let cartBadgeCount = document.getElementById("cart-count");
+let cartBadgeIcon = document.getElementById("cart-badge");
 
 let localStorageCartCount = JSON.parse(localStorage.getItem("so-cart"));
 cartCount = localStorageCartCount.length;
+cartBadgeCount.innerHTML = cartCount;
 
-cartBadge.innerHTML = cartCount;
+if (cartCount > 0) {
+    cartBadgeIcon.style.display = "block";
+};
+
+
+
+
+
+
+
