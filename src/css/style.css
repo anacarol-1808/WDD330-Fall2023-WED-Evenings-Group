@@ -137,7 +137,8 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: rgba(42, 207, 42, 0.488);
+  background-color: var(--secondary-color);
+  color: var(--light-grey);
   border-radius: 50%;
   width: 12px;
   height: 12px;
