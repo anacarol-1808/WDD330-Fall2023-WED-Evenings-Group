@@ -28,3 +28,20 @@ export function getParam(param) {
   const paramValue = urlParams.get(param)
   return paramValue;
 }
+
+
+export function loadHeaderFooter() {
+  const output = document.querySelector("body");
+  renderWithTemplate("afterbegin", '../public/partials/header.html', output);
+  renderWithTemplate("beforeend", '../public/partials/footer.html', output);
+};
+
+async function loadTemplate (path) {
+  const response = await fetch(path);
+  return response.text();
+};
+
+async function renderWithTemplate(position, path, output) {
+  const outputStr = await loadTemplate(path);
+    output.insertAdjacentHTML(position, outputStr);
+}

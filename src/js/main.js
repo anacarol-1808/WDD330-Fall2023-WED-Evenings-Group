@@ -1,4 +1,8 @@
 import productList from "./productList.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
+
 const category = "tents";
 const selector = "productList";
 productList(category, selector);
