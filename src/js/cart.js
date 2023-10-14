@@ -13,15 +13,15 @@ function renderCartContents() {
 }
 
 function showTotal(cartItems) {
-    // Calculate total items
-    const total = cartItems.reduce(
-      (result, cartItem) => result + cartItem.ListPrice,
-      0
-    );
-    // Select cart total from html and update it with total price
-    document.getElementById("cart-total").innerHTML += ` <b>${total}</b>`;
-    // Select cart footer and unhide it
-    document.getElementById("cart-footer").classList.remove("hide");
+  // Calculate total items
+  const total = cartItems.reduce(
+    (result, cartItem) => result + cartItem.ListPrice,
+    0
+  );
+  // Select cart total from html and update it with total price
+  document.getElementById("cart-total").innerHTML += ` <b>${total}</b>`;
+  // Select cart footer and unhide it
+  document.getElementById("cart-footer").classList.remove("hide");
 }
 
 function cartItemTemplate(item) {
