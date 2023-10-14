@@ -3,7 +3,6 @@ const category = "tents";
 const selector = "productList";
 productList(category, selector);
 
-
 // showing items added to the cart on the bag when the page loads
 let cartCount;
 let cartBadgeCount = document.getElementById("cart-count");
@@ -14,12 +13,5 @@ cartCount = localStorageCartCount.length;
 cartBadgeCount.innerHTML = cartCount;
 
 if (cartCount > 0) {
-    cartBadgeIcon.style.display = "block";
-};
-
-
-
-
-
-
-
+  cartBadgeIcon.style.display = "block";
+}
