@@ -8,14 +8,14 @@ function convertToJson(res) {
 
 
 
-export function getData(category = "tents") {
+export function getData(category) {
   const baseURL = import.meta.env.VITE_SERVER_URL
   return fetch(baseURL + `products/search/${category}`)
     .then(convertToJson)
     .then((data) => data);
 }
 
-export async function findProductById(id) {
-  const products = await getData();
+export async function findProductById(id, category) {
+  const products = await getData(category);
   return products["Result"].find((item) => item.Id === id);
 }

@@ -1,10 +1,10 @@
 import { getData } from "./productData.mjs"
 
-function productCardTemplate (product) {
+function productCardTemplate (product, category) {
     return `<li class="product-card">
-    <a href="/product_pages/index.html?product=${product.Id}">
+    <a href="/product_pages/index.html?category=${category}&product=${product.Id}">
       <img
-        src="${product.Image}"
+        src="${product.Images.PrimaryMedium}"
         alt="Image ${product.Name}"
       />
       <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -17,12 +17,12 @@ export default async function productList(category, selector) {
     const list = await getData(category);
     const output = document.getElementById(selector);
     if (output) {
-      renderList(list["Result"], output);
+      renderList(list["Result"], output, category);
     }
 };
 
-function renderList(list, output) {
+function renderList(list, output, category) {
     list.map((product)=> {
-        output.insertAdjacentHTML("beforeend", productCardTemplate(product))  
+        output.insertAdjacentHTML("beforeend", productCardTemplate(product, category))  
     })
 }

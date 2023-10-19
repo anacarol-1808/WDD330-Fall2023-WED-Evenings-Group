@@ -1,8 +1,8 @@
 import { findProductById } from "./productData.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
-export async function productDetails(productId) {
-  let productData = await findProductById(productId);
+export async function productDetails(productId, productCategory) {
+  let productData = await findProductById(productId, productCategory);
   renderProductDetails(productData);
 }
 
@@ -17,14 +17,14 @@ function renderProductDetails(productData) {
 
   // Image
   const img = document.getElementById("productImg");
-  img.setAttribute("src", productData.Image);
+  img.setAttribute("src", productData.Images.PrimaryLarge);
   img.setAttribute("alt", productData.Name);
 
   document.getElementById("finalPrice").textContent = "$" + productData.FinalPrice;
   document.getElementById("savingsPercent").textContent = "SAVE " + Math.floor(((productData.SuggestedRetailPrice - productData.FinalPrice) / productData.SuggestedRetailPrice) * 10000) / 100 + "%";
   document.getElementById("suggestedRetailPrice").textContent = "$" + productData.SuggestedRetailPrice;
   document.getElementById("productColor").textContent = productData.Colors[0].ColorName;
-  document.getElementById("productDescription").textContent = productData.DescriptionHtmlSimple;
+  document.getElementById("productDescription").innerHTML = productData.DescriptionHtmlSimple;
 
   // Calculate and display the discount amount
   
