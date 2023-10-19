@@ -26,6 +26,3 @@ function renderList(list, output) {
         output.insertAdjacentHTML("beforeend", productCardTemplate(product))  
     })
 }
-
-
-
