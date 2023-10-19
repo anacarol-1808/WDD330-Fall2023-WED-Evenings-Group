@@ -40,9 +40,11 @@ function renderProductDetails(productData) {
 
   // Add to Cart Button
   document.getElementById("addToCart").dataset.id = productData.Id
+  document.getElementById("addToCart").dataset.category = productData.Category
 }
 
 function addProductToCart(product) {
+  console.log(product)
   let cartItems = getLocalStorage("so-cart");
   if (cartItems) {
     cartItems.push(product);
@@ -54,8 +56,10 @@ function addProductToCart(product) {
 
 // add to cart button event handler
 async function addToCartHandler(e) {
-  3;
-  const product = await findProductById(e.target.dataset.id);
+  const category = e.target.dataset.category
+  const id = e.target.dataset.id
+  const product = await findProductById(id,category);
+  
   addProductToCart(product);
 
   
