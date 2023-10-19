@@ -16,11 +16,12 @@ function productCardTemplate (product) {
 export default async function productList(category, selector) {
     const list = await getData(category);
     const output = document.getElementById(selector);
-    renderList(list, output) 
+    if (output) {
+      renderList(list, output);
+    }
 };
 
 function renderList(list, output) {
-    console.log(list)
     list.map((product)=> {
         output.insertAdjacentHTML("beforeend", productCardTemplate(product))  
     })

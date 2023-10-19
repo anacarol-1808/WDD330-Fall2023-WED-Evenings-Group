@@ -32,3 +32,40 @@ export function getParam(param) {
   const paramValue = urlParams.get(param)
   return paramValue;
 }
+
+
+export async function loadHeaderFooter() {
+  const output = document.querySelector("body");
+  await renderWithTemplate("afterbegin", '../public/partials/header.html', output);
+  await renderWithTemplate("beforeend", '../public/partials/footer.html', output);
+  populateCartCount();
+};
+
+export function populateCartCount() {
+    // showing items added to the cart on the bag when the page loads
+    let cartCount;
+    let cartBadgeCount = document.getElementById("cart-count");
+    let cartBadgeIcon = document.getElementById("cart-badge");
+
+    let localStorageCartCount = JSON.parse(localStorage.getItem("so-cart"));
+    if (localStorageCartCount) {
+        cartCount = localStorageCartCount.length;
+        cartBadgeCount.innerHTML = cartCount;
+
+        if (cartCount > 0) {
+            cartBadgeIcon.style.display = "block";
+        }
+    } else {
+      cartBadgeIcon.style.display = "none";
+    }
+}
+
+async function loadTemplate (path) {
+  const response = await fetch(path);
+  return response.text();
+};
+
+async function renderWithTemplate(position, path, output) {
+  const outputStr = await loadTemplate(path);
+    output.insertAdjacentHTML(position, outputStr);
+}
