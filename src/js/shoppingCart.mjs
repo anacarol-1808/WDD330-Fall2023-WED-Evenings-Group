@@ -1,7 +1,8 @@
 import { 
     getLocalStorage,
     setLocalStorage,
-    deleteLocalStorage
+    deleteLocalStorage,
+    populateCartCount
 } from "./utils.mjs";
 
 export default function renderCartContents() {
@@ -90,6 +91,7 @@ function removeFromCart() {
     } else {
         deleteLocalStorage("so-cart");
     }
-
+    
+    populateCartCount();
     renderCartContents();
 }

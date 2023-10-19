@@ -11,8 +11,6 @@ function renderProductDetails(productData) {
   document
     .getElementById("addToCart")
     .addEventListener("click", addToCartHandler);
-
-  console.log(productData);
   
   document.getElementById("brandName").textContent = productData.Brand.Name;
   document.getElementById("productName").textContent = productData.NameWithoutBrand;

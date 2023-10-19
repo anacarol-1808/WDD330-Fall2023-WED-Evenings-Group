@@ -34,11 +34,31 @@ export function getParam(param) {
 }
 
 
-export function loadHeaderFooter() {
+export async function loadHeaderFooter() {
   const output = document.querySelector("body");
-  renderWithTemplate("afterbegin", '../public/partials/header.html', output);
-  renderWithTemplate("beforeend", '../public/partials/footer.html', output);
+  await renderWithTemplate("afterbegin", '../public/partials/header.html', output);
+  await renderWithTemplate("beforeend", '../public/partials/footer.html', output);
+  populateCartCount();
 };
+
+export function populateCartCount() {
+    // showing items added to the cart on the bag when the page loads
+    let cartCount;
+    let cartBadgeCount = document.getElementById("cart-count");
+    let cartBadgeIcon = document.getElementById("cart-badge");
+
+    let localStorageCartCount = JSON.parse(localStorage.getItem("so-cart"));
+    if (localStorageCartCount) {
+        cartCount = localStorageCartCount.length;
+        cartBadgeCount.innerHTML = cartCount;
+
+        if (cartCount > 0) {
+            cartBadgeIcon.style.display = "block";
+        }
+    } else {
+      cartBadgeIcon.style.display = "none";
+    }
+}
 
 async function loadTemplate (path) {
   const response = await fetch(path);
