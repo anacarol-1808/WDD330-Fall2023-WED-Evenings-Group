@@ -2,7 +2,7 @@ import { getData } from "./productData.mjs"
 
 function productCardTemplate (product) {
     return `<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
+    <a href="/product_pages/index.html?product=${product.Id}">
       <img
         src="${product.Image}"
         alt="Image ${product.Name}"
@@ -17,7 +17,7 @@ export default async function productList(category, selector) {
     const list = await getData(category);
     const output = document.getElementById(selector);
     if (output) {
-      renderList(list, output);
+      renderList(list["Result"], output);
     }
 };
 
