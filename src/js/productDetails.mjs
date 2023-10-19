@@ -11,8 +11,6 @@ function renderProductDetails(productData) {
   document
     .getElementById("addToCart")
     .addEventListener("click", addToCartHandler);
-
-  console.log(productData);
   
   document.getElementById("brandName").textContent = productData.Brand.Name;
   document.getElementById("productName").textContent = productData.NameWithoutBrand;
@@ -39,6 +37,9 @@ function renderProductDetails(productData) {
     discountElement.textContent = `Discount: $${discountAmount.toFixed(2)}`;
     document.getElementById("productPrice").appendChild(discountElement);
   }
+
+  // Add to Cart Button
+  document.getElementById("addToCart").dataset.id = productData.Id
 }
 
 function addProductToCart(product) {
@@ -56,6 +57,21 @@ async function addToCartHandler(e) {
   3;
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
+
+  
+// showing items added to the cart on the bag when the btn is pressed
+let cartCount;
+let cartBadgeCount = document.getElementById("cart-count");
+let cartBadgeIcon = document.getElementById("cart-badge");
+
+let localStorageCartCount = JSON.parse(localStorage.getItem("so-cart"));
+cartCount = localStorageCartCount.length;
+cartBadgeCount.innerHTML = cartCount;
+
+if (cartCount > 0) {
+    cartBadgeIcon.style.display = "block";
+};
+
 }
 
 
