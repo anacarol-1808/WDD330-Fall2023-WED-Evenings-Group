@@ -15,6 +15,68 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+        <form class="checkout-form" id="checkoutForm">
+          <fieldset class="set">
+            <legend class="legend">Shipping</legend>
+            <label class="label" for="fname">First Name</label>
+            <input class="input" type="text" name="fname" id="fname" />
+            <label class="label" for="lname">Last Name</label>
+            <input class="input" type="text" name="lname" id="lname" />
+            <label class="label" for="street">Street Address</label>
+            <input class="input" type="text" name="street" id="street" />
+            <label class="label" for="city">City</label>
+            <input class="input" type="text" name="city" id="city" />
+            <label class="label" for="state">State</label>
+            <input class="input" type="text" name="state" id="state" />
+            <label class="label" for="zip">Zip Code</label>
+            <input class="input" type="text" name="zip" id="zip" />
+          </fieldset>
+          <fieldset class="set">
+            <legend class="legend">Payment</legend>
+            <label class="label" for="cardNumber">Card number</label>
+            <input
+              class="input"
+              type="text"
+              name="cardNumber"
+              id="cardNumber"
+            />
+            <label class="label" for="expiration">Expiration</label>
+            <input
+              class="input"
+              type="text"
+              name="expiration"
+              id="expiration"
+            />
+            <label class="label" for="code">Security Code</label>
+            <input class="input" type="text" name="code" id="code" />
+          </fieldset>
+          <fieldset class="set">
+            <legend class="legend">Order Summary</legend>
+            <div class="row">
+              <p class="title">
+                Item Subtotal (<span id="subtotal-qty">#</span>)
+              </p>
+              <p class="value" id="subtotal-price">$###.##</p>
+            </div>
+            <div class="row">
+              <p class="title">Shipping Estimate</p>
+              <p class="value" id="shippingEstimate">$##.##</p>
+            </div>
+            <div class="row">
+              <p class="title">Tax</p>
+              <p class="value" id="tax">$##.##</p>
+            </div>
+            <div class="row end">
+              <p class="title">Order Total</p>
+              <p class="value" id="total">$###.##</p>
+            </div>
+          </fieldset>
+          <input
+            class="submit checkout-button"
+            type="submit"
+            value="Checkout"
+          />
+        </form>
       </section>
     </main>
   </body>
