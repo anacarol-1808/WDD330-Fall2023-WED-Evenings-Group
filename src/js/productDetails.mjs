@@ -47,7 +47,13 @@ function addProductToCart(product) {
   console.log(product)
   let cartItems = getLocalStorage("so-cart");
   if (cartItems) {
-    cartItems.push(product);
+    let match = cartItems.filter((cartItem) => cartItem.Id == product.Id)[0];
+    if (match) {
+      cartItems[cartItems.indexOf(match)].qty++;
+    } else {
+      product.qty = 1;
+      cartItems.push(product);
+    }
   } else {
     cartItems = [product];
   }
