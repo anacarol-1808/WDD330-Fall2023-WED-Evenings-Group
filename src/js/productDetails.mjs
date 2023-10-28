@@ -47,10 +47,10 @@ function addProductToCart(product) {
   if (cartItems) {
     let match = cartItems.filter((cartItem) => cartItem.Id == product.Id)[0];
     if (match) {
-      cartItems[cartItems.indexOf(match)].qty++;
+      cartItems[cartItems.indexOf(match)].Quantity++;
     } else {
-      product.qty = 1;
-      cartItems.push(product);
+      product.Quantity = 1;
+    cartItems.push(product);
     }
   } else {
     cartItems = [product];
@@ -80,4 +80,21 @@ if (cartCount > 0) {
 
 }
 
+class checkoutProcess {
+  constructor (localKey, outputSelector) {
+    this.localKey = localKey;
+    this.outputSelector = outputSelector;
+  }
 
+  calculateItemTotal() {
+
+  }
+
+  calculateFinalPrice() {
+
+  }
+
+  displayFinalPrice() {
+
+  }
+}
