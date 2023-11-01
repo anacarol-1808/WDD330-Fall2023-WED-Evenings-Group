@@ -13,17 +13,25 @@ function productCardTemplate(product, category) {
   </li>`;
 }
 
-export default async function productList(category, selector) {
+export default async function productList(category, selector, searchValue) {
   const list = await getProductsByCategory(category);
   const output = document.getElementById(selector);
   if (output) {
-    renderList(list["Result"], output, category);
+    renderList(list["Result"], output, category, searchValue);
   }
 }
 
-function renderList(list, output, category) {
+function renderList(list, output, category, searchValue) {
   formatHeader(category)
-  list.map((product) => {
+  output.innerHTML = "";
+  let productlistFilter = list.filter((product) => {
+    if ((searchValue != null && product.Name.includes (searchValue)) || searchValue == null) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  productlistFilter.map((product) => {
     output.insertAdjacentHTML(
       "beforeend",
       productCardTemplate(product, category)
