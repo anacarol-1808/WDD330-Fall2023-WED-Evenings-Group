@@ -1,12 +1,11 @@
-function convertToJson(res) {
+export function convertToJson(res) {
+  const jsonResponse = res.json();
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    throw new Error("Bad Response");
+    throw { name: 'servicesEror', messsage: jsonResponse};
   }
 }
-
-
 
 export function getProductsByCategory(category) {
   const baseURL = import.meta.env.VITE_SERVER_URL
@@ -30,5 +29,5 @@ export async function checkout(payload){
     body: JSON.stringify(payload)
   }
   const response = await fetch(url, options)
-  console.log(response)
+    return response;
 }

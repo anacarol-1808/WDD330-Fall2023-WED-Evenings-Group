@@ -1,4 +1,6 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { checkout } from "./externalServices.mjs";
+import { convertToJson } from "./externalServices.mjs"
 
 export const checkoutProcess = {
     localKey: "",
@@ -57,5 +59,16 @@ export const checkoutProcess = {
         Array.from(document.getElementById("checkoutForm").elements).forEach(formField => {
             this.payload[formField.name] = formField.value;
         });
+    },
+    checkOut: function() {
+        try {
+            const response = checkout(this.payload);
+            const responseData = convertToJson(response);
+            console.log(responseData);
+            location.assign('/checkout/success.html');
+        } catch (err) {
+            console.log(err);
+            err.message;
+        }
     }
 }

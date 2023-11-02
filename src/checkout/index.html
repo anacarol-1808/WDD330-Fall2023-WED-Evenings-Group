@@ -15,21 +15,21 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
-        <form class="checkout-form" id="checkoutForm">
+        <form class="checkout-form" id="checkoutForm" method="post" actions="success.html">
           <fieldset class="set">
             <legend class="legend">Shipping</legend>
             <label class="label" for="fname">First Name</label>
-            <input class="input" type="text" name="fname" id="fname" />
+            <input class="input" type="text" name="fname" id="fname" required/>
             <label class="label" for="lname">Last Name</label>
-            <input class="input" type="text" name="lname" id="lname" />
+            <input class="input" type="text" name="lname" id="lname" required/>
             <label class="label" for="street">Street Address</label>
-            <input class="input" type="text" name="street" id="street" />
+            <input class="input" type="text" name="street" id="street" required/>
             <label class="label" for="city">City</label>
-            <input class="input" type="text" name="city" id="city" />
+            <input class="input" type="text" name="city" id="city" required/>
             <label class="label" for="state">State</label>
-            <input class="input" type="text" name="state" id="state" />
+            <input class="input" type="text" name="state" id="state" required/>
             <label class="label" for="zip">Zip Code</label>
-            <input class="input" type="text" name="zip" id="zip" />
+            <input class="input" type="text" name="zip" id="zip" required/>
           </fieldset>
           <fieldset class="set">
             <legend class="legend">Payment</legend>
