@@ -63,8 +63,12 @@ export const checkoutProcess = {
     checkOut: function() {
         try {
             const response = checkout(this.payload);
-            const responseData = convertToJson(response);
-            console.log(responseData);
+            console.log(response);
+
+            // clear the cart from local storage
+            localStorage.removeItem(this.localKey);
+
+            //redirect to the success message. 
             location.assign('/checkout/success.html');
         } catch (err) {
             console.log(err);

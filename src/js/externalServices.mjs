@@ -28,6 +28,7 @@ export async function checkout(payload){
     },
     body: JSON.stringify(payload)
   }
-  const response = await fetch(url, options)
+  // it was a promise. Use .then to process the data using converToJson
+  const response = await fetch(url, options).then(convertToJson);
     return response;
 }

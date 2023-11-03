@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Sleep Outside | Checkout</title>
-
-    <link rel="stylesheet" href="css/style.css" />
+    <title>Sleep Outside | Order Success</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
-
   <body>
     <main class="divider">
       <section class="products">
@@ -39,6 +34,7 @@
               type="text"
               name="cardNumber"
               id="cardNumber"
+              required
             />
             <label class="label" for="expiration">Expiration</label>
             <input
@@ -46,9 +42,10 @@
               type="text"
               name="expiration"
               id="expiration"
+              required
             />
             <label class="label" for="code">Security Code</label>
-            <input class="input" type="text" name="code" id="code" />
+            <input class="input" type="text" name="code" id="code" required/>
           </fieldset>
           <fieldset class="set">
             <legend class="legend">Order Summary</legend>
@@ -81,4 +78,5 @@
     </main>
   </body>
   <script type="module" src="../js/checkout.js"></script>
+  <script type="module" src="../js/main.js"></script>
 </html>
