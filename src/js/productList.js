@@ -8,7 +8,11 @@ loadHeaderFooter();
 
 let products = [];
 
+// Initial sort order is ascending
+let sortAscending = true; 
+
 document.addEventListener("DOMContentLoaded", function () {
+  const sortButton = document.getElementById("sortByPriceButton");
 
   function renderProductList() {
       const productListBox = document.getElementById("productList");
@@ -28,23 +32,25 @@ document.addEventListener("DOMContentLoaded", function () {
         productListBox.appendChild(listItem);
       });
     }
-    
-  // Sort products by name
-  function sortProductsByName() {
-      console.log("Products before sorting:", products);
-      products.sort((a, b) => a.name.localeCompare(b.name));
-      console.log("Products after sorting:", products);
-      renderProductList();
+
+  function updateSortButtonText() {
+    // update the sorting button text based on the current sorting state
+    sortButton.textContent = sortAscending
+      ? "Sort by Price: Low to High"
+      : "Sort by Price: High to Low";
   }
 
-  // Sort products by price
-  function sortProductsByPrice() {
-    products.sort((a, b) => a.price - b.price);
-    renderProductList();
-  }
-  // Add event listeners to sorting buttons
-  document.getElementById("sortByNameButton").addEventListener("click", sortProductsByName);
-  document.getElementById("sortByPriceButton").addEventListener("click", sortProductsByPrice);
+  // Initial text for the sorting button
+  updateSortButtonText();
+
+  sortButton.addEventListener("click", () => {
+    // Toggle the sorting order
+    sortAscending = !sortAscending;
+    // Update the sorting button text
+    updateSortButtonText();
+    // Call the productList function with the updated sorting flag
+    productList(category, selector, null, sortAscending);
+  });
 
 });
 
@@ -68,7 +74,7 @@ function searchResult(value) {
     .catch((error) => {
         console.error("Error fetching search results:", error);
     });
-    }
+  }
 
 document.getElementById("searchForm").addEventListener("submit", (e) => {
     // preventDefault avoids the default form submission behavior 
@@ -76,5 +82,5 @@ document.getElementById("searchForm").addEventListener("submit", (e) => {
     e.preventDefault(); 
     // calling a function here to fetch and display the actual result. 
     const searchValue = document.getElementById("searchInput").value;
-    productList(category, selector, searchValue);
-}); 
+    productList(category, selector, searchValue, sortAscending);
+});
