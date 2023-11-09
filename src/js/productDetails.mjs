@@ -53,6 +53,7 @@ function addProductToCart(product) {
     cartItems.push(product);
     }
   } else {
+    product.Quantity = 1;
     cartItems = [product];
   }
   setLocalStorage("so-cart", cartItems);
