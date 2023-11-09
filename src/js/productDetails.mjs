@@ -3,7 +3,12 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export async function productDetails(productId, productCategory) {
   let productData = await findProductById(productId, productCategory);
-  renderProductDetails(productData);
+  if (productData){
+    renderProductDetails(productData);
+  }else{
+    renderMissingProduct();
+  }
+  
 }
 
 function renderProductDetails(productData) {
@@ -82,6 +87,12 @@ if (cartCount > 0) {
     cartBadgeIcon.style.display = "block";
 };
 
+}
+
+function renderMissingProduct(){
+  document.querySelector(".product-detail").classList.add("hide");
+  let missingHTML = "<div><h1>That product could not be found!</h1><p><a href='../'>Click here to view a list of our products</a></p></div>";
+  document.querySelector(".product-detail-main").insertAdjacentHTML("beforeend",missingHTML)
 }
 
 

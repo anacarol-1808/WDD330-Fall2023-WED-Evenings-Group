@@ -1,4 +1,6 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { checkout } from "./externalServices.mjs";
+import { convertToJson } from "./externalServices.mjs"
 
 export const checkoutProcess = {
     localKey: "",
@@ -57,5 +59,20 @@ export const checkoutProcess = {
         Array.from(document.getElementById("checkoutForm").elements).forEach(formField => {
             this.payload[formField.name] = formField.value;
         });
+    },
+    checkOut: function() {
+        try {
+            const response = checkout(this.payload);
+            console.log(response);
+
+            // clear the cart from local storage
+            localStorage.removeItem(this.localKey);
+
+            //redirect to the success message. 
+            location.assign('/checkout/success.html');
+        } catch (err) {
+            console.log(err);
+            err.message;
+        }
     }
 }

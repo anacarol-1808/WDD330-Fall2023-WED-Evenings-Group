@@ -21,4 +21,4 @@ function renderList(list, output) {
     });
 
     document.querySelector("main").insertAdjacentElement("afterbegin", output);
-}
+} 
