@@ -11,6 +11,20 @@ export default function renderCartContents() {
     if (cartItems) {
         const htmlItems = cartItems.map((item) => cartItemTemplate(item));
         document.querySelector(".product-list").innerHTML = htmlItems.join("");
+        Array.from(document.querySelector(".product-list").querySelectorAll('input[name="qty"]')).forEach(input => {
+            input.addEventListener("change", (e) => {
+                if(input.validity.valid) { 
+                    for (let i_cartItem = 0;  i_cartItem < cartItems.length; i_cartItem++) {
+                        if (cartItems[i_cartItem].Id == input.getAttribute("item-id")) {
+                            cartItems[i_cartItem].Quantity = e.target.value;
+                        }
+                    }
+                    
+                    setLocalStorage("so-cart", cartItems);
+                    showTotal(cartItems);
+                }
+            });
+        });
         // Add remove event listeners
         addRemoveListeners();
     } else {
@@ -34,7 +48,7 @@ function showTotal(cartItems) {
     if (cartItems) {
     // Calculate total items
     const total = cartItems
-        .reduce((result, cartItem) => result + cartItem.ListPrice, 0)
+        .reduce((result, cartItem) => result + cartItem.ListPrice * cartItem.Quantity, 0)
         .toFixed(2);
     // Select cart total from html and update it with total price
     document.getElementById("cart-total").innerHTML = `Total <b>$${total}</b>`;
@@ -60,7 +74,10 @@ function cartItemTemplate(item) {
     <h2 class='card__name'>${item.Name}</h2>
     </a>
     <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
-    <p class='cart-card__quantity'>qty: 1</p>
+    <form>
+        <label for="qty">Quantity</label>
+        <input type="number" min="1" name="qty" class='cart-card__quantity' value="${item.Quantity}" item-id="${item.Id}" required/>
+    </form>
     <p class='cart-card__price'>$${item.FinalPrice}</p>
     </div>
 </li>`;

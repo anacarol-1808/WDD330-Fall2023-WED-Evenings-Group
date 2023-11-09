@@ -54,12 +54,13 @@ function addProductToCart(product) {
   if (cartItems) {
     let match = cartItems.filter((cartItem) => cartItem.Id == product.Id)[0];
     if (match) {
-      cartItems[cartItems.indexOf(match)].qty++;
+      cartItems[cartItems.indexOf(match)].Quantity++;
     } else {
-      product.qty = 1;
-      cartItems.push(product);
+      product.Quantity = 1;
+    cartItems.push(product);
     }
   } else {
+    product.Quantity = 1;
     cartItems = [product];
   }
   setLocalStorage("so-cart", cartItems);
@@ -89,10 +90,9 @@ if (cartCount > 0) {
 
 }
 
+
 function renderMissingProduct(){
   document.querySelector(".product-detail").classList.add("hide");
   let missingHTML = "<div><h1>That product could not be found!</h1><p><a href='../'>Click here to view a list of our products</a></p></div>";
   document.querySelector(".product-detail-main").insertAdjacentHTML("beforeend",missingHTML)
 }
-
-
