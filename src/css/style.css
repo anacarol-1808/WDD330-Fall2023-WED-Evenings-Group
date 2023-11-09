@@ -471,6 +471,44 @@ button {
 
 /* End checkout page styles */
 
+/* Start form searchBar styling */
+form {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+form button {
+  margin-right: -10px;
+  border-radius: 5px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--light-grey);
+  border-radius: 5px;
+
+}
+
+/* End form searchBar styling */
+
+  
+/* Start product list page sort styling start */
+
+.sortingButton {
+  display: grid;
+  grid-template-columns: 200px auto;
+  font-size: 0.7rem;
+}
+
+#sortByNameButton, #sortByPriceButton {
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+/* Sort product list sort page styling */
 
 @media screen and (min-width: 500px) {
   body {

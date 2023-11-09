@@ -12,18 +12,39 @@ function productCardTemplate(product, category) {
       <p class="product-card__price">$${product.FinalPrice}</p></a>
   </li>`;
 }
-
-export default async function productList(category, selector) {
+export default async function productList(category, selector, searchValue, sortAscending = true) {
   const list = await getProductsByCategory(category);
   const output = document.getElementById(selector);
   if (output) {
-    renderList(list["Result"], output, category);
+    renderList(list["Result"], output, category, searchValue, sortAscending);
   }
 }
 
-function renderList(list, output, category) {
-  formatHeader(category)
-  list.map((product) => {
+function renderList(list, output, category, searchValue, sortAscending) {
+  formatHeader(category);
+  output.innerHTML = "";
+
+  // convert lowercase for a caseinsensitive comparison if it's not null
+  searchValue = searchValue != null ? searchValue.toLowerCase() : null;
+
+  // filter list based on case insensitive comparison
+  let filteredProducts = list.filter((product) => {
+    // Convert product name to lowercase
+    let productNameLower = product.Name.toLowerCase(); 
+    // Check with the lowercase search value
+    return searchValue == null || productNameLower.includes(searchValue); 
+  });
+ // Sort the filtered product list by price
+ if (!sortAscending) {
+  // Sort in descending order
+  filteredProducts.sort((a, b) => parseFloat(b.FinalPrice) - parseFloat(a.FinalPrice));
+} 
+ else {
+  // Sort in ascending order
+  filteredProducts.sort((a, b) => parseFloat(a.FinalPrice) - parseFloat(b.FinalPrice)); 
+}
+  // Map over the filtered (and possibly sorted) list to create HTML elements
+  filteredProducts.forEach((product) => {
     output.insertAdjacentHTML(
       "beforeend",
       productCardTemplate(product, category)
