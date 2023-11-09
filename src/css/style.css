@@ -224,7 +224,8 @@ button {
 
 /* End cart icon styles */
 
-/* Styles for product lists */
+
+/* Start Styles for product lists */
 .products {
   padding: 0.5em;
 }
@@ -393,12 +394,22 @@ button {
 
 /* End cart list card styles */
 
+
 /* Start checkout page stytles */
-.checkout-form {
-  display: grid;
-  grid-template-columns: auto minmax(200px, 300px);
+.checkout-form form {
+  display: flex;
+  /* display: grid; */
+  /* grid-template-columns: auto minmax(200px, 300px); */
+  flex-direction: column;
   max-width: 1000px;
-  grid-column-gap: 80px;
+  column-gap: 80px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 100%; 
+  text-align: center;
+  background-color: var(--primary-color);
 }
 
 .checkout-form .set {
@@ -442,7 +453,24 @@ button {
   height: fit-content;
   margin: 0 auto;
 }
+.label {
+  text-align: left; 
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input:valid:not(:placeholder-shown) {
+  background-color: #E7F0FE; 
+}
+
 /* End checkout page styles */
+
 
 @media screen and (min-width: 500px) {
   body {
