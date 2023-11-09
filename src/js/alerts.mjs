@@ -1,7 +1,7 @@
-import { getData } from "./productData.mjs";
+import { getProductsByCategory } from "./externalServices.mjs";
 
 export default async function buildAlerts() {
-    const alerts = await getData('alerts');
+    const alerts = await getProductsByCategory('alerts');
     if (alerts.length > 0) {
         const output = document.createElement("section");
         output.classList.add("alert-list");
@@ -21,4 +21,4 @@ function renderList(list, output) {
     });
 
     document.querySelector("main").insertAdjacentElement("afterbegin", output);
-}
+} 

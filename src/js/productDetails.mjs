@@ -1,9 +1,14 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
-export async function productDetails(productId) {
-  let productData = await findProductById(productId);
-  renderProductDetails(productData);
+export async function productDetails(productId, productCategory) {
+  let productData = await findProductById(productId, productCategory);
+  if (productData){
+    renderProductDetails(productData);
+  }else{
+    renderMissingProduct();
+  }
+  
 }
 
 function renderProductDetails(productData) {
@@ -17,14 +22,14 @@ function renderProductDetails(productData) {
 
   // Image
   const img = document.getElementById("productImg");
-  img.setAttribute("src", productData.Image);
+  img.setAttribute("src", productData.Images.PrimaryLarge);
   img.setAttribute("alt", productData.Name);
 
   document.getElementById("finalPrice").textContent = "$" + productData.FinalPrice;
   document.getElementById("savingsPercent").textContent = "SAVE " + Math.floor(((productData.SuggestedRetailPrice - productData.FinalPrice) / productData.SuggestedRetailPrice) * 10000) / 100 + "%";
   document.getElementById("suggestedRetailPrice").textContent = "$" + productData.SuggestedRetailPrice;
   document.getElementById("productColor").textContent = productData.Colors[0].ColorName;
-  document.getElementById("productDescription").textContent = productData.DescriptionHtmlSimple;
+  document.getElementById("productDescription").innerHTML = productData.DescriptionHtmlSimple;
 
   // Calculate and display the discount amount
   
@@ -40,9 +45,11 @@ function renderProductDetails(productData) {
 
   // Add to Cart Button
   document.getElementById("addToCart").dataset.id = productData.Id
+  document.getElementById("addToCart").dataset.category = productData.Category
 }
 
 function addProductToCart(product) {
+  console.log(product)
   let cartItems = getLocalStorage("so-cart");
   if (cartItems) {
     let match = cartItems.filter((cartItem) => cartItem.Id == product.Id)[0];
@@ -61,8 +68,10 @@ function addProductToCart(product) {
 
 // add to cart button event handler
 async function addToCartHandler(e) {
-  3;
-  const product = await findProductById(e.target.dataset.id);
+  const category = e.target.dataset.category
+  const id = e.target.dataset.id
+  const product = await findProductById(id,category);
+  
   addProductToCart(product);
 
   
@@ -81,21 +90,9 @@ if (cartCount > 0) {
 
 }
 
-class checkoutProcess {
-  constructor (localKey, outputSelector) {
-    this.localKey = localKey;
-    this.outputSelector = outputSelector;
-  }
 
-  calculateItemTotal() {
-
-  }
-
-  calculateFinalPrice() {
-
-  }
-
-  displayFinalPrice() {
-
-  }
+function renderMissingProduct(){
+  document.querySelector(".product-detail").classList.add("hide");
+  let missingHTML = "<div><h1>That product could not be found!</h1><p><a href='../'>Click here to view a list of our products</a></p></div>";
+  document.querySelector(".product-detail-main").insertAdjacentHTML("beforeend",missingHTML)
 }

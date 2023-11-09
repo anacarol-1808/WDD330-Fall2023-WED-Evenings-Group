@@ -7,19 +7,17 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+    <form id="searchForm" action="/productList/index.html" method="get">      
+      <input type="text" id="searchInput" placeholder="Search for product" />
+      <button type="submit">Search</button>
+    </form>   
     <main class="divider">
-      <section class="mission">
-        <p>We spend too much time these days indoors...sitting usually.</p>
-        <p>No wonder we are a mess!</p>
-        <p>
-          What we really need is to get outside...in fact SLEEP outside. Our
-          mission is to provide you with everything you need to do this
-          comfortably at an affordable price.
-        </p>
-      </section>
-
+      <section class="sortingButton">
+        <!-- Sorting buttons to product listing page -->
+          <button id="sortByPriceButton">Sort by Price</button>
+        </section>
       <section class="products">
-        <h2>Top Products</h2>
+        <h2 class="product-list-header">Top Products</h2>
         <ul class="product-list" id="productList"></ul>
       </section>
     </main>

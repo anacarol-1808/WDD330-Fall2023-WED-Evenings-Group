@@ -36,8 +36,8 @@ export function getParam(param) {
 
 export async function loadHeaderFooter() {
   const output = document.querySelector("body");
-  await renderWithTemplate("afterbegin", '../public/partials/header.html', output);
-  await renderWithTemplate("beforeend", '../public/partials/footer.html', output);
+  await renderWithTemplate("afterbegin", '/partials/header.html', output);
+  await renderWithTemplate("beforeend", '/partials/footer.html', output);
   populateCartCount();
 };
 
