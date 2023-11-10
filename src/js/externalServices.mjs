@@ -7,6 +7,37 @@ export function convertToJson(res) {
   }
 }
 
+export async function getOrders(token) {
+  const url = import.meta.env.VITE_SERVER_URL + "orders";
+  const options = {
+    method:"GET",
+    headers:{
+      "Authorization": `Bearer ${token}`
+    }
+  }
+
+  console.log(token)
+
+  // it was a promise. Use .then to process the data using converToJson
+  const response = await fetch(url, options).then(convertToJson);
+  return response;
+}
+
+export async function loginRequest(creds) {
+  const url = import.meta.env.VITE_SERVER_URL + "login";
+  const options = {
+    method:"POST",
+    headers:{
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(creds)
+  }
+
+  // it was a promise. Use .then to process the data using converToJson
+  const response = await fetch(url, options).then(convertToJson);
+  return response;
+}
+
 export function getProductsByCategory(category) {
   const baseURL = import.meta.env.VITE_SERVER_URL
   return fetch(baseURL + `products/search/${category}`)
